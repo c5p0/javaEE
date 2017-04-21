@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-20 15:46:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.xq.domain.User" table="sys_user">
+        <id name="user_id" type="java.lang.Long">
+            <generator class="native" />
+        </id>
+        <property name="user_code" type="java.lang.String">
+            <column name="USER_CODE" />
+        </property>
+        <property name="user_name" type="java.lang.String">
+            <column name="USER_NAME" />
+        </property>
+        <property name="user_password" type="java.lang.String">
+            <column name="USER_PASSWORD" />
+        </property>
+        <property name="user_state" type="java.lang.String">
+            <column name="USER_STATE" />
+        </property>
+        <set name="roles" table="sys_user_role" cascade="save-update">
+            <key column="user_id"/>
+             <many-to-many  class="cn.xq.domain.Role" column="role_id"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

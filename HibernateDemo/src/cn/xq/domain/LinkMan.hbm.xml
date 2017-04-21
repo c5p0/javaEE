@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-20 14:51:19 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.xq.domain.LinkMan" table="cst_linkman">
+        <id name="lkm_id" type="java.lang.Long">
+            <column name="LKM_ID" />
+            <generator class="native" />
+        </id>
+        <property name="lkm_name" type="java.lang.String">
+            <column name="LKM_NAME" />
+        </property>
+        <property name="lkm_gender" type="java.lang.String">
+            <column name="LKM_GENDER" />
+        </property>
+        <property name="lkm_phone" type="java.lang.String">
+            <column name="LKM_PHONE" />
+        </property>
+        <property name="lkm_mobile" type="java.lang.String">
+            <column name="LKM_MOBILE" />
+        </property>
+        <property name="lkm_email" type="java.lang.String">
+            <column name="LKM_EMAIL" />
+        </property>
+        <property name="lkm_qq" type="java.lang.String">
+            <column name="LKM_QQ" />
+        </property>
+        <property name="lkm_position" type="java.lang.String">
+            <column name="LKM_POSITION" />
+        </property>
+        <property name="lkm_memo" type="java.lang.String">
+            <column name="LKM_MEMO" />
+        </property>
+        <!--多对一 -->
+        <many-to-one name="customer" class="cn.xq.domain.Customer" fetch="join"  cascade="save-update">
+            <column name="lkm_cust_id" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

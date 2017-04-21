@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-20 15:46:59 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cn.xq.domain.Role" table="sys_role">
+        <id name="role_id" type="java.lang.Long">
+            <generator class="native" />
+        </id>
+        <property name="role_name" type="java.lang.String">
+            <column name="ROLE_NAME" />
+        </property>
+        <property name="role_memo" type="java.lang.String">
+            <column name="ROLE_MEMO" />
+        </property>
+        <set name="users" table="sys_user_role" inverse="true">
+            <key column="role_id"/>
+            <many-to-many  class="cn.xq.domain.User" column="user_id"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
