@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 设配置Struts的默认编码 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- #  struts.objectFactory = spring	将action的创建交给spring容器	
+			struts.objectFactory.spring.autoWire = name spring负责装配Action依赖属性
+			-->
+	<constant name="struts.objectFactory" value="spring"></constant>
+	<!-- 设置使用开发模式 -->
+<!-- 	<constant name="struts.devMode" value="false"></constant> -->
+    <!-- 
+        package 其中的属性: 
+          name 必填属性，指定该包的名字，此名字是该包被其他包引用的key;
+          namespace 可选属性，该属性定义该包的命名空间
+    	  extends 可选属性，它指定该包继承自其他包，继承其他包，默认配置 struts-default
+    	  abstract 可选属性，它指定该包是否是一个抽象包，抽象包中不能包含Action定义 	
+     -->
+    <package name="SSH" namespace="/" extends="struts-default" >
+    	<!-- 
+    	    全局结果页面跳转
+    		<global-results> <result name="success">/demo1/demo2.jsp</result></global-results>
+    	 -->
+        <!--
+            Action配置属性
+        	name: 必填属性，标识Action 指定了Action所处理的请求的URL
+        	class: 可选属性，指定Action 对应Action类
+        	method :在Action类里面配置的方法
+        	converter  可选属性，指定类型转换器的类  	
+            对于一个Action 多个方法采用通配符配置method{1}表示name属性中的出现的第一个*所代表的字符		
+         -->
+        <action name="linkman_*" class="cn.xq.struts2.action.StrutsDemo1" method="{1}">
+            <!-- 配置结果页面的跳转
+                 name 对应于Action类中方法返回的字符串
+                 type 默认就是dispatcher 用于转发
+                      redirect : 重定向到一个URL 被跳转的页面中丢失传递的信息
+                      redirectAction : 重定向到一个Action，跳转的页面中丢失传递的数据
+                      chain : 用来处理Action链，被跳转的Action中人能获取上个页面的值，如request信息
+            -->
+            <result name="success" type="dispatcher">/demo1/demo2.jsp</result>
+        </action>
+    </package>
+    <!-- 
+        为了分模块开发配置 
+    <include file="struts-user.xml"></include>
+        配置文件在具体包中时的方式
+    <include file="cn/xq/action/struts-user.xml"></include>
+    -->
+</struts>
